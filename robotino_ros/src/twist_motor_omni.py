@@ -15,13 +15,15 @@ class TwistToMotors():
         rospy.loginfo("%s started" % nodename)
         self.M_PI = math.pi
         self.motor_velocities = []
-    
+    	
+    	# Create publishers that publishes target velocity to the PID controller
         self.pub_lmotor = rospy.Publisher('lwheel_vtarget', Float32,queue_size=10)
         self.pub_rmotor = rospy.Publisher('rwheel_vtarget', Float32,queue_size=10)
         self.pub_bmotor = rospy.Publisher('bwheel_vtarget', Float32,queue_size=10)
-
+		
+		# Subscribe to the velocity commands from teleop
         rospy.Subscriber('/robotino/cmd_vel', Twist, self.twistCallback, queue_size=10)
-    
+    	
         self.rate = rospy.get_param("~rate", 100)
         self.timeout_ticks = rospy.get_param("~timeout_ticks", 100)
         self.left = 0
@@ -41,12 +43,15 @@ class TwistToMotors():
             idle.sleep()
             
     def spinOnce(self):
-  
-        angle_mat = np.array([[math.cos(30*(self.M_PI/180)), math.cos(150*(self.M_PI/180)), math.cos(90*(self.M_PI/180))], [-math.sin(30*(self.M_PI/180)), -math.sin(150*(self.M_PI/180)), math.sin(90*(self.M_PI/180))], [1, 1, 1]])
+  		# Calculating the individual motor velocity for a motion command
+        angle_mat = np.array([[math.cos(30*(self.M_PI/180)), math.cos(150*(self.M_PI/180)), math.cos(90*(self.M_PI/180))], 
+        						[-math.sin(30*(self.M_PI/180)), -math.sin(150*(self.M_PI/180)),math.sin(90*(self.M_PI/180))],
+        						[1, 1, 1]])
         angle_mat_inv = al.inv(angle_mat)
 
         [v_r, v_l, v_b] = np.dot(angle_mat_inv, np.array([self.dx, self.dy, self.dr]))
         
+        # Assigning the calculated velocities to each motors
         self.right = v_r
         self.left = v_l
         self.back = v_b
@@ -56,6 +61,7 @@ class TwistToMotors():
         self.pub_bmotor.publish(self.back)
         self.ticks_since_target += 1
 
+	# Callback function 
     def twistCallback(self,msg):
         self.ticks_since_target = 0
         self.dx = msg.linear.x
