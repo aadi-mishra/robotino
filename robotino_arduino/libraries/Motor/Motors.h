@@ -44,6 +44,7 @@ namespace Motors {
   
   }
   
+  // Counts encoder ticks
   void motors_count_pulse_r() {
   if (motordir[0] == FORWARD){
     current_pulser++;
@@ -69,7 +70,7 @@ namespace Motors {
     }
   
 }
-  
+  // returns encoder values corresponding to each motors
   int get_motors_pulse_r() {
     return motors_pulse_r;
   }
@@ -123,7 +124,7 @@ namespace Motors {
 	  rightMotor->run(motordir[2]);
   
 }
-
+  // Initialse Motors
   void initMotors() {
     pinMode(2, INPUT_PULLUP); //Enc R
    	pinMode(3, INPUT_PULLUP); // Enc L
@@ -137,7 +138,7 @@ namespace Motors {
     initMotorState();
   }
   
-  
+  // Update Motor state ( Forward, Backward, Stop)
   void updateMotorState(byte i, Adafruit_DCMotor *motor) {
   	
     
@@ -164,7 +165,7 @@ namespace Motors {
       //analogWrite(mvrm, 0);
     }
 }
-  
+  // Update Encoder State (Encoder Position)
   void updateState() {
   	kinematics();
     motors_pulse_r += current_pulser;

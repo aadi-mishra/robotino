@@ -46,6 +46,7 @@ void bcmdVelCB(const std_msgs::Int16& tspeed) {
 ////  Motors::ang_vel(0);
 //}
 
+// defining publishers and subscribers
 ros::Publisher rwheel_encoder("rwheel_encoder",&rwheel_int);
 ros::Publisher lwheel_encoder("lwheel_encoder",&lwheel_int);
 ros::Publisher bwheel_encoder("bwheel_encoder",&bwheel_int);
@@ -63,12 +64,14 @@ ros::Subscriber<std_msgs::Int16> bmotor_cmd("bmotor_cmd", &bcmdVelCB);
 //ros::Subscriber<geometry_msgs::Twist> cmd("robotino/cmd_vel", &cmdVelCB);
 
 void setup() {
-  
+  // Initialise sensors and motors
   IRsensor::initSensors();
   Bumper::initBumper();
   Motors::initMotors();
-  
+
+  // Set baudrate
   nh.getHardware()->setBaud(74880);
+  // Initialise ros node
   nh.initNode();
 
   nh.advertise(rwheel_encoder);
@@ -114,14 +117,14 @@ void loop() {
   bwheel_encoder.publish(&bwheel_int);
   // Bumper Sensor Data
   bumper_float.data = Bumper::bump;
-  bumper.publish(&bumper_float);
+  bumper.publish(&bumper_float); // Publish Bumper sensor data
   // IR sensors Data
   ir_sensor_array.layout.dim = 
     (std_msgs::MultiArrayDimension *)malloc(sizeof(std_msgs::MultiArrayDimension));
   ir_sensor_array.layout.dim[0].label = "distance";
   ir_sensor_array.data = IRsensor::distances;
   ir_sensor_array.data_length = 9;
-  ir_sensors.publish(&ir_sensor_array);
+  ir_sensors.publish(&ir_sensor_array); // Publish IR sensor data
  
   nh.spinOnce();
   //delay(50);
