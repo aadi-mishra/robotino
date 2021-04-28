@@ -10,6 +10,7 @@
 #include <std_msgs/Int8.h>
 #include <std_msgs/Float32.h>
 #include <std_msgs/UInt8MultiArray.h>
+#include <std_msgs/Int16MultiArray.h>
 #include <geometry_msgs/Twist.h>
 #include <PID_v1.h>
 
@@ -37,23 +38,12 @@ void bcmdVelCB(const std_msgs::Int16& tspeed) {
   //Motors::bMotor(200);
 }
 
-//void cmdVelCB(const geometry_msgs::Twist& vspeed) { 
-//  Motors::x_vel(vspeed.linear.x);
-//  Motors::y_vel(vspeed.linear.y);
-//  Motors::ang_vel(vspeed.linear.z);
-////  Motors::x_vel(0.5);
-////  Motors::y_vel(0);
-////  Motors::ang_vel(0);
-//}
+
 
 // defining publishers and subscribers
 ros::Publisher rwheel_encoder("rwheel_encoder",&rwheel_int);
 ros::Publisher lwheel_encoder("lwheel_encoder",&lwheel_int);
 ros::Publisher bwheel_encoder("bwheel_encoder",&bwheel_int);
-
-ros::Publisher rmotor_data("rmotor_data",&right);
-ros::Publisher lmotor_data("lmotor_data",&left);
-ros::Publisher bmotor_data("bmotor_data",&back);
 
 ros::Publisher bumper("bumper",&bumper_float);
 ros::Publisher ir_sensors("ir_sensors",&ir_sensor_array);
@@ -61,7 +51,6 @@ ros::Publisher ir_sensors("ir_sensors",&ir_sensor_array);
 ros::Subscriber<std_msgs::Int16> rmotor_cmd("rmotor_cmd", &rcmdVelCB);
 ros::Subscriber<std_msgs::Int16> lmotor_cmd("lmotor_cmd", &lcmdVelCB);
 ros::Subscriber<std_msgs::Int16> bmotor_cmd("bmotor_cmd", &bcmdVelCB);
-//ros::Subscriber<geometry_msgs::Twist> cmd("robotino/cmd_vel", &cmdVelCB);
 
 void setup() {
   // Initialise sensors and motors
@@ -77,9 +66,6 @@ void setup() {
   nh.advertise(rwheel_encoder);
   nh.advertise(lwheel_encoder);
   nh.advertise(bwheel_encoder);
-  nh.advertise(rmotor_data);
-  nh.advertise(lmotor_data);
-  nh.advertise(bmotor_data);
   nh.advertise(bumper);
   nh.advertise(ir_sensors);
 
@@ -87,7 +73,6 @@ void setup() {
   nh.subscribe(rmotor_cmd);  // right motor
   nh.subscribe(lmotor_cmd);  // left motor
   nh.subscribe(bmotor_cmd);  // back motor
-  //nh.subscribe(cmd);
   //nh.negotiateTopics();
   
 }
@@ -97,15 +82,6 @@ void loop() {
   IRsensor::updateState();
   Motors::updateState();
 
-  right.data= Motors::get_motors_data_r();
-  rmotor_data.publish(&right);
-  
-  left.data= Motors::get_motors_data_l();
-  lmotor_data.publish(&left);
-  
-  back.data= Motors::get_motors_data_b();
-  bmotor_data.publish(&back);
-  
   // Right Wheel Encoder Data
   rwheel_int.data = Motors::get_motors_pulse_r();
   rwheel_encoder.publish(&rwheel_int);
