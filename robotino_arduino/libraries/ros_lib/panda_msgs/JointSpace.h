@@ -21,22 +21,22 @@ namespace panda_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->current_angles.serialize(outbuffer + offset);
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->current_angles.deserialize(inbuffer + offset);
      return offset;
     }
 
-    const char * getType(){ return "panda_msgs/JointSpace"; };
-    const char * getMD5(){ return "776bf5a76abc5cac1c242d5b5703be37"; };
+    virtual const char * getType() override { return "panda_msgs/JointSpace"; };
+    virtual const char * getMD5() override { return "776bf5a76abc5cac1c242d5b5703be37"; };
 
   };
 

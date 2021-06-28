@@ -24,7 +24,7 @@ static const char INVERSE[] = "panda_msgs/Inverse";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->pose.serialize(outbuffer + offset);
@@ -34,7 +34,7 @@ static const char INVERSE[] = "panda_msgs/Inverse";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->pose.deserialize(inbuffer + offset);
@@ -44,8 +44,8 @@ static const char INVERSE[] = "panda_msgs/Inverse";
      return offset;
     }
 
-    const char * getType(){ return INVERSE; };
-    const char * getMD5(){ return "b39b7c97851f21a7ef18a242db20d874"; };
+    virtual const char * getType() override { return INVERSE; };
+    virtual const char * getMD5() override { return "b39b7c97851f21a7ef18a242db20d874"; };
 
   };
 
@@ -59,7 +59,7 @@ static const char INVERSE[] = "panda_msgs/Inverse";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       for( uint32_t i = 0; i < 7; i++){
@@ -68,7 +68,7 @@ static const char INVERSE[] = "panda_msgs/Inverse";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       for( uint32_t i = 0; i < 7; i++){
@@ -77,8 +77,8 @@ static const char INVERSE[] = "panda_msgs/Inverse";
      return offset;
     }
 
-    const char * getType(){ return INVERSE; };
-    const char * getMD5(){ return "fd734290f050f0cac2c261a4926809cc"; };
+    virtual const char * getType() override { return INVERSE; };
+    virtual const char * getMD5() override { return "fd734290f050f0cac2c261a4926809cc"; };
 
   };
 

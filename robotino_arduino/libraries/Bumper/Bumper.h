@@ -5,7 +5,8 @@
 #endif
 */
 
-#define inPin A15   // choose the input pin
+//#define inPin A15   // choose the input pin MEGA
+#define inPin A5   // choose the input pin MEGA
 
 namespace Bumper {
 

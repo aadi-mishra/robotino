@@ -23,12 +23,12 @@ static const char TRAJECTORIESP2P[] = "panda_msgs/TrajectoriesP2P";
       _target_type * target;
 
     TrajectoriesP2PRequest():
-      source_length(0), source(NULL),
-      target_length(0), target(NULL)
+      source_length(0), st_source(), source(nullptr),
+      target_length(0), st_target(), target(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->source_length >> (8 * 0)) & 0xFF;
@@ -50,7 +50,7 @@ static const char TRAJECTORIESP2P[] = "panda_msgs/TrajectoriesP2P";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t source_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -80,8 +80,8 @@ static const char TRAJECTORIESP2P[] = "panda_msgs/TrajectoriesP2P";
      return offset;
     }
 
-    const char * getType(){ return TRAJECTORIESP2P; };
-    const char * getMD5(){ return "2a2d08a32fbc04976e12450c4c1412e2"; };
+    virtual const char * getType() override { return TRAJECTORIESP2P; };
+    virtual const char * getMD5() override { return "2a2d08a32fbc04976e12450c4c1412e2"; };
 
   };
 
@@ -118,17 +118,17 @@ static const char TRAJECTORIESP2P[] = "panda_msgs/TrajectoriesP2P";
       _theta7_type * theta7;
 
     TrajectoriesP2PResponse():
-      theta1_length(0), theta1(NULL),
-      theta2_length(0), theta2(NULL),
-      theta3_length(0), theta3(NULL),
-      theta4_length(0), theta4(NULL),
-      theta5_length(0), theta5(NULL),
-      theta6_length(0), theta6(NULL),
-      theta7_length(0), theta7(NULL)
+      theta1_length(0), st_theta1(), theta1(nullptr),
+      theta2_length(0), st_theta2(), theta2(nullptr),
+      theta3_length(0), st_theta3(), theta3(nullptr),
+      theta4_length(0), st_theta4(), theta4(nullptr),
+      theta5_length(0), st_theta5(), theta5(nullptr),
+      theta6_length(0), st_theta6(), theta6(nullptr),
+      theta7_length(0), st_theta7(), theta7(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->theta1_length >> (8 * 0)) & 0xFF;
@@ -190,7 +190,7 @@ static const char TRAJECTORIESP2P[] = "panda_msgs/TrajectoriesP2P";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t theta1_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -280,8 +280,8 @@ static const char TRAJECTORIESP2P[] = "panda_msgs/TrajectoriesP2P";
      return offset;
     }
 
-    const char * getType(){ return TRAJECTORIESP2P; };
-    const char * getMD5(){ return "52e648d1fc2b6862e3c3627db673046e"; };
+    virtual const char * getType() override { return TRAJECTORIESP2P; };
+    virtual const char * getMD5() override { return "52e648d1fc2b6862e3c3627db673046e"; };
 
   };
 

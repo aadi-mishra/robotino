@@ -23,22 +23,22 @@ static const char FK[] = "panda_msgs/Fk";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->joint_states.serialize(outbuffer + offset);
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->joint_states.deserialize(inbuffer + offset);
      return offset;
     }
 
-    const char * getType(){ return FK; };
-    const char * getMD5(){ return "482cc7b23f4d6ca5e5aac26ecce1ce01"; };
+    virtual const char * getType() override { return FK; };
+    virtual const char * getMD5() override { return "482cc7b23f4d6ca5e5aac26ecce1ce01"; };
 
   };
 
@@ -53,22 +53,22 @@ static const char FK[] = "panda_msgs/Fk";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->pose.serialize(outbuffer + offset);
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->pose.deserialize(inbuffer + offset);
      return offset;
     }
 
-    const char * getType(){ return FK; };
-    const char * getMD5(){ return "f192399f711a48924df9a394d37edd67"; };
+    virtual const char * getType() override { return FK; };
+    virtual const char * getMD5() override { return "f192399f711a48924df9a394d37edd67"; };
 
   };
 

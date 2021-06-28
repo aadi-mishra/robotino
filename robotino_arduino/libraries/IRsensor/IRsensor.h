@@ -9,11 +9,11 @@
 #define IR2 A1 
 #define IR3 A2
 #define IR4 A3
-#define IR5 A7
-#define IR6 A8
-#define IR7 A9
-#define IR8 A10
-#define IR9 A11
+#define IR5 A8
+#define IR6 A9
+#define IR7 A10
+#define IR8 A11
+#define IR9 A12
 
 #define model1 430
 #define model2 430
