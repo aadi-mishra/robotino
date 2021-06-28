@@ -20,12 +20,13 @@ The repository contains the directories:
 * Connect the arduino/robot with the companion computer. 
 
 
-## 2. Running the program
-* Once you have done the setup and everything works smooth. Call `rosocore` in a terminal.
+## 2. Running programs on Robotino
+* ssh into Robotino from your companion computer as `ssh nvidia@134.28.45.77`
+* Once you have done the setup and everything works smooth. Call `roscore` in a terminal.
 * Now in a separate terminal run the following. Make sure you have permissions to access the port.
     * `rosrun rosserial_python serial_node.py /dev/ttyACM0 _baud:=115200` 
 * Then run the following
-    * `roslaunch robotino_ros robot.launch`
+    * `roslaunch robotino_ros robotino.launch`
 * Finally, run
     * `rosrun robotino_ros teleop_twist_keyboard.py` 
 * Robot can now be controlled using teleop.
