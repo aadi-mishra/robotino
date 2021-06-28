@@ -8,7 +8,8 @@ The repository contains the directories:
 * Clone the repository to your computer.
 * Clone the compatible [rosserial](https://github.com/aadi-mishra/rosserial.git) to your catkin_ws and compile.
     ### Arduino End
-    * Copy the files under '__robotino_arduino__ to your arduino sketch libraries. And load the sketch to your arduino.
+    * Copy the files under '__robotino_arduino__ to your arduino sketch libraries.
+    * Open `robotino_arduino_IO` on your adrduino IDE and burn the sketch to your board (Currently supported Arduino MEGA only).
 
     ### ROS End
     * Move the __robotino_ros__ folder to your catkin_ws and compile.
