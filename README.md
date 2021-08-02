@@ -15,8 +15,8 @@ The repository contains the directories:
     * Move the __robotino_ros__ folder to your catkin_ws and compile.
 
 * Open bashrc and add following lines then source. 
-    * `export ROS_IP=134.28.45.113`
-    * `export ROS_MASTER_URI=http://<Your IP adadress>:11311`
+    * `export ROS_IP=http://<Your IP adadress>`
+    * `export ROS_MASTER_URI=http://<Your MASTER(Robotino) IP adadress>:11311`
 
 * Connect the arduino/robot with the companion computer. 
 
